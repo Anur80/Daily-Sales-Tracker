@@ -12,6 +12,9 @@ window.onload = function () {
     } else {
         showLogin();
     }
+    // Set default date
+    document.getElementById('sale-date').valueAsDate = new Date();
+    document.getElementById('due-date').valueAsDate = new Date();
 };
 
 // Login System
@@ -124,9 +127,6 @@ function openTab(tabName) {
     }
 }
 
-// Set default date
-document.getElementById('sale-date').valueAsDate = new Date();
-document.getElementById('due-date').valueAsDate = new Date();
 
 // Sales form
 document.getElementById('sales-form').addEventListener('submit', function (e) {
