@@ -197,8 +197,8 @@ function renderSales() {
             <td>${sale.customerName}</td>
             <td>${sale.product}</td>
             <td>${sale.quantity}</td>
-            <td>$${sale.price.toFixed(2)}</td>
-            <td>$${sale.total.toFixed(2)}</td>
+            <td>Ksh ${sale.price.toFixed(2)}</td>
+            <td>Ksh ${sale.total.toFixed(2)}</td>
             <td>${formatPaymentMethod(sale.paymentMethod)}</td>
             <td>${formatDate(sale.saleDate)}</td>
             <td class="action-buttons">
@@ -208,7 +208,7 @@ function renderSales() {
         `;
         salesBody.appendChild(row);
     });
-    document.getElementById('total-sales').textContent = `$${totalSales.toFixed(2)}`;
+    document.getElementById('total-sales').textContent = `Ksh ${totalSales.toFixed(2)}`;
 }
 
 function renderDebts() {
@@ -223,7 +223,7 @@ function renderDebts() {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${debt.customer}</td>
-            <td>$${debt.amount.toFixed(2)}</td>
+            <td>Ksh ${debt.amount.toFixed(2)}</td>
             <td>${debt.reason}</td>
             <td>${formatDate(debt.dueDate)}</td>
             <td><span class="${debt.status === 'pending' || debt.status === 'overdue' ? 'debt-owed' : 'debt-paid'}">${formatStatus(debt.status)}</span></td>
@@ -234,7 +234,7 @@ function renderDebts() {
         `;
         debtsBody.appendChild(row);
     });
-    document.getElementById('total-debt').textContent = `$${totalDebt.toFixed(2)}`;
+    document.getElementById('total-debt').textContent = `Ksh ${totalDebt.toFixed(2)}`;
 }
 
 function renderHistory() {
@@ -247,7 +247,7 @@ function renderHistory() {
             <td>${formatDate(sale.saleDate)}</td>
             <td>${sale.customerName}</td>
             <td>${sale.product}</td>
-            <td>$${sale.total.toFixed(2)}</td>
+            <td>Ksh ${sale.total.toFixed(2)}</td>
             <td>${formatPaymentMethod(sale.paymentMethod)}</td>
         `;
         historyBody.appendChild(row);
@@ -264,10 +264,10 @@ function updateReports() {
         .reduce((sum, d) => sum + d.amount, 0);
     const netIncome = dailySalesTotal - outstandingDebts;
 
-    document.getElementById('daily-sales').textContent = `$${dailySalesTotal.toFixed(2)}`;
+    document.getElementById('daily-sales').textContent = `Ksh ${dailySalesTotal.toFixed(2)}`;
     document.getElementById('daily-transactions').textContent = dailyTransactionCount;
-    document.getElementById('daily-debts').textContent = `$${outstandingDebts.toFixed(2)}`;
-    document.getElementById('net-income').textContent = `$${netIncome.toFixed(2)}`;
+    document.getElementById('daily-debts').textContent = `Ksh ${outstandingDebts.toFixed(2)}`;
+    document.getElementById('net-income').textContent = `Ksh ${netIncome.toFixed(2)}`;
     renderHistory();
 }
 
