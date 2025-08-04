@@ -1,0 +1,418 @@
+:root {
+    --dark-gray: #333333;
+    --light-yellow: #fad02c; /* Updated color */
+    --white: #FFFFFF;
+    --text-dark: #333;
+    --text-light: #F5F5F5;
+    --btn-hover: #f9c11c; /* Slightly darker yellow for hover */
+    --danger: #ff6b6b;
+    --danger-hover: #ff5252;
+    --info: #4dabf7;
+    --info-hover: #339af0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--dark-gray);
+    color: var(--text-light);
+    min-height: 100vh;
+}
+
+/* Login & Setup */
+.login-container {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    color: var(--text-dark);
+    max-width: 450px;
+    margin: 60px auto;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.login-container h2 {
+    margin-bottom: 12px;
+    color: var(--dark-gray);
+}
+
+.login-container p {
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+}
+
+.login-container input:focus {
+    border-color: var(--light-yellow);
+    outline: none;
+}
+
+.login-container button {
+    background-color: var(--light-yellow);
+    color: var(--dark-gray);
+    border: none;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-container button:hover {
+    background-color: var(--btn-hover);
+    transform: translateY(-2px);
+}
+
+.signup-link a {
+    color: var(--info);
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* Main App */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: var(--light-yellow);
+    color: var(--dark-gray);
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+header h1 {
+    font-size: 2.3rem;
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+#logout-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: var(--light-yellow);
+    color: var(--dark-gray);
+    border: none;
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#logout-btn:hover {
+    background-color: var(--btn-hover);
+    transform: scale(1.05);
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    gap: 10px;
+}
+
+.tab {
+    padding: 12px 26px;
+    background-color: var(--light-yellow);
+    color: var(--dark-gray);
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tab:hover {
+    background-color: var(--btn-hover);
+}
+
+.tab.active {
+    background-color: var(--white);
+    color: var(--dark-gray);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    color: var(--text-dark);
+    min-height: 500px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark-gray);
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: var(--light-yellow);
+    outline: none;
+}
+
+button {
+    background-color: var(--light-yellow);
+    color: var(--dark-gray);
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: var(--btn-hover);
+    transform: translateY(-2px);
+}
+
+/* Data Actions (Export/Import) */
+.data-actions {
+    margin: 25px 0;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#export-btn {
+    background-color: var(--light-yellow);
+    color: var(--dark-gray);
+    padding: 12px 20px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#export-btn:hover {
+    background-color: var(--btn-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+.import-label {
+    background-color: var(--info);
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.import-label:hover {
+    background-color: var(--info-hover);
+    transform: translateY(-2px);
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 14px 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background-color: var(--light-yellow);
+    color: var(--dark-gray);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+tr:hover {
+    background-color: #fdfdfd;
+    transform: scale(1.005);
+    transition: background-color 0.2s ease;
+}
+
+.total-row {
+    font-weight: bold;
+    background-color: #f8f8f8;
+    font-size: 1.05rem;
+}
+
+/* Action Buttons in Table */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-delete {
+    background-color: var(--danger);
+    color: white;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background-color: var(--danger-hover);
+}
+
+.btn-edit {
+    background-color: var(--info);
+    color: white;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-edit:hover {
+    background-color: var(--info-hover);
+}
+
+/* Summary Section */
+.summary {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 0;
+    padding: 20px;
+    background-color: var(--light-yellow);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.summary-item {
+    text-align: center;
+    padding: 12px;
+    flex: 1;
+    min-width: 120px;
+}
+
+.summary-value {
+    font-size: 1.9rem;
+    font-weight: bold;
+    color: var(--dark-gray);
+}
+
+.summary-label {
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+    margin-top: 6px;
+}
+
+.debt-owed {
+    color: #e53935;
+}
+
+.debt-paid {
+    color: #388e3c;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .summary {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .tabs {
+        flex-wrap: wrap;
+    }
+
+    .tab {
+        margin-bottom: 5px;
+    }
+
+    .data-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #logout-btn {
+        position: static;
+        margin-top: 15px;
+        width: 100%;
+    }
+
+    header {
+        padding: 20px 15px;
+    }
+}

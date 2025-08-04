@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Sales Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-container">
+        <h2>Welcome Back</h2>
+        <p>Log in to access your sales tracker</p>
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button onclick="login()">Log In</button>
+        <p class="signup-link">
+            <small>No account? <a href="#" onclick="showSetup(); return false;">Create one</a></small>
+        </p>
+    </div>
+
+    <!-- Setup New Account -->
+    <div id="setup-screen" class="login-container" style="display: none;">
+        <h2>Create Account</h2>
+        <p>Set up your secure login</p>
+        <input type="text" id="new-username" placeholder="Choose Username" required />
+        <input type="password" id="new-password" placeholder="Choose Password" required />
+        <button onclick="setupAccount()">Create Account</button>
+        <p><a href="#" onclick="showLogin(); return false;">Back to Login</a></p>
+    </div>
+
+    <!-- Main App -->
+    <div id="main-app" class="main-container" style="display: none;">
+        <header>
+            <h1>Daily Sales Tracker</h1>
+            <p>Track your sales and manage customer debts</p>
+            <button id="logout-btn" onclick="logout()">Logout</button>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" onclick="openTab('sales')">Sales</button>
+            <button class="tab" onclick="openTab('debts')">Debts</button>
+            <button class="tab" onclick="openTab('reports')">Reports</button>
+        </div>
+
+        <!-- Sales Tab -->
+        <div id="sales" class="tab-content active">
+            <h2>Record New Sale</h2>
+            <form id="sales-form">
+                <div class="form-group">
+                    <label for="customer-name">Customer Name</label>
+                    <input type="text" id="customer-name" required />
+                </div>
+                <div class="form-group">
+                    <label for="product">Product/Service</label>
+                    <input type="text" id="product" required />
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" min="1" value="1" required />
+                </div>
+                <div class="form-group">
+                    <label for="price">Price per Unit ($)</label>
+                    <input type="number" id="price" min="0" step="0.01" required />
+                </div>
+                <div class="form-group">
+                    <label for="payment-method">Payment Method</label>
+                    <select id="payment-method" required>
+                        <option value="cash">Cash</option>
+                        <option value="credit">Credit</option>
+                        <option value="mobile">Mobile Payment</option>
+                        <option value="card">Card</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sale-date">Date</label>
+                    <input type="date" id="sale-date" required />
+                </div>
+                <button type="submit">Record Sale</button>
+            </form>
+
+            <div class="data-actions">
+                <button id="export-btn" onclick="exportData()">
+                    📤 Export Data
+                </button>
+                <label class="import-label">
+                    📥 Import Data
+                    <input type="file" id="import-file" accept=".json" style="display: none;" onchange="importData(event)" />
+                </label>
+            </div>
+
+            <h2>Today's Sales</h2>
+            <table id="sales-table">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Unit Price</th>
+                        <th>Total</th>
+                        <th>Method</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="sales-body"></tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td colspan="4">Total Sales:</td>
+                        <td id="total-sales">$0.00</td>
+                        <td colspan="3"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <!-- Debts Tab -->
+        <div id="debts" class="tab-content">
+            <h2>Record New Debt</h2>
+            <form id="debt-form">
+                <div class="form-group">
+                    <label for="debt-customer">Customer Name</label>
+                    <input type="text" id="debt-customer" required />
+                </div>
+                <div class="form-group">
+                    <label for="debt-amount">Debt Amount ($)</label>
+                    <input type="number" id="debt-amount" min="0" step="0.01" required />
+                </div>
+                <div class="form-group">
+                    <label for="debt-reason">Reason for Debt</label>
+                    <input type="text" id="debt-reason" required />
+                </div>
+                <div class="form-group">
+                    <label for="due-date">Due Date</label>
+                    <input type="date" id="due-date" required />
+                </div>
+                <div class="form-group">
+                    <label for="debt-status">Status</label>
+                    <select id="debt-status" required>
+                        <option value="pending">Pending</option>
+                        <option value="paid">Paid</option>
+                        <option value="overdue">Overdue</option>
+                    </select>
+                </div>
+                <button type="submit">Record Debt</button>
+            </form>
+
+            <h2>Outstanding Debts</h2>
+            <table id="debts-table">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Amount ($)</th>
+                        <th>Reason</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="debts-body"></tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td>Total Outstanding:</td>
+                        <td id="total-debt">$0.00</td>
+                        <td colspan="4"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <!-- Reports Tab -->
+        <div id="reports" class="tab-content">
+            <h2>Daily Summary</h2>
+            <div class="summary">
+                <div class="summary-item">
+                    <div class="summary-value" id="daily-sales">$0.00</div>
+                    <div class="summary-label">Total Sales</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value" id="daily-transactions">0</div>
+                    <div class="summary-label">Transactions</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value" id="daily-debts">$0.00</div>
+                    <div class="summary-label debt-owed">Outstanding Debts</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value" id="net-income">$0.00</div>
+                    <div class="summary-label">Net Income</div>
+                </div>
+            </div>
+
+            <h2>Sales History</h2>
+            <table id="history-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Amount</th>
+                        <th>Method</th>
+                    </tr>
+                </thead>
+                <tbody id="history-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
