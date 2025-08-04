@@ -416,3 +416,46 @@ tr:hover {
         padding: 20px 15px;
     }
 }
+/* Additional Mobile Responsive Enhancements */
+@media (max-width: 480px) {
+    .login-container {
+        width: auto;
+        margin: 30px 20px;
+        padding: 20px;
+    }
+    .main-container {
+        padding: 15px;
+    }
+    header h1 {
+        font-size: 1.8rem;
+    }
+    header p {
+        font-size: 0.95rem;
+    }
+    .tabs {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .tab {
+        flex: 1;
+        padding: 10px;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+    .tab-content {
+        padding: 20px 15px;
+        min-height: auto;
+    }
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+    th, td {
+        padding: 10px 8px;
+        font-size: 0.85rem;
+    }
+    button, input, select {
+        font-size: 1rem;
+    }
+}
